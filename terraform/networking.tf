@@ -30,6 +30,16 @@ resource "aws_security_group" "rds_test" {
   vpc_id = "${aws_vpc.rds_test.id}"
 }
 
+resource "aws_security_group_rule" "mysql_in" {
+  type            = "ingress"
+  from_port       = 3306
+  to_port         = 3306
+  protocol        = "tcp"
+  source_security_group_id = "${aws_security_group.allow_ssh.id}"
+
+  security_group_id = "${aws_security_group.rds_test.id}"
+}
+
 resource "aws_vpc" "rds_test" {
   cidr_block = "10.0.0.0/16"
 }
@@ -127,5 +137,5 @@ output "ssh-tunnel" {
 }
 
 output "ssh" {
-  value = "ssh ubuntu@localhost -p 2201"
+  value = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ubuntu@localhost -p 2201"
 }

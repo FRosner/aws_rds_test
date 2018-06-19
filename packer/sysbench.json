@@ -13,13 +13,14 @@
     },
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "rds_test_sysbench"
+    "ami_name": "rds_test_sysbench {{timestamp}}"
   }],
   "provisioners": [{
     "type": "shell",
     "inline": [
       "sudo apt-get update",
-      "sudo apt-get install -y sysbench"
+      "sudo apt-get install -y sysbench",
+      "sudo apt-get install -y mysql-client-core-5.7"
     ]
   }]
 }
