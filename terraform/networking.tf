@@ -24,9 +24,9 @@ data "aws_availability_zone" "eu-central-1c" {
   name = "eu-central-1c"
 }
 
-resource "aws_security_group" "rds_test" {
-  name = "rds_test"
-  description = "No external traffic allowed"
+resource "aws_security_group" "rds_test_mysql" {
+  name = "rds_test_mysql"
+  description = "RDS Test MySQL Security Group"
   vpc_id = "${aws_vpc.rds_test.id}"
 }
 
@@ -37,7 +37,7 @@ resource "aws_security_group_rule" "mysql_in" {
   protocol        = "tcp"
   source_security_group_id = "${aws_security_group.allow_ssh.id}"
 
-  security_group_id = "${aws_security_group.rds_test.id}"
+  security_group_id = "${aws_security_group.rds_test_mysql.id}"
 }
 
 resource "aws_vpc" "rds_test" {

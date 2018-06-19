@@ -14,7 +14,7 @@ resource "aws_db_instance" "rds_test_mysql" {
   password             = "foobarbaz"
   parameter_group_name = "default.mysql5.7"
   db_subnet_group_name = "${aws_db_subnet_group.rds_test.name}"
-  vpc_security_group_ids = ["${aws_security_group.rds_test.id}"]
+  vpc_security_group_ids = ["${aws_security_group.rds_test_mysql.id}"]
   apply_immediately = "${var.apply_immediately}"
   final_snapshot_identifier = "rds-test-mysql-final"
 }
