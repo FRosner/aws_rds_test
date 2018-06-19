@@ -42,9 +42,9 @@ output "sysbench_cmd_1" {
 }
 
 output "sysbench_cmd_2" {
-  value = "sysbench --test=oltp --oltp-table-size=250 --mysql-user=${aws_db_instance.rds_test_mysql.username} --mysql-password=${aws_db_instance.rds_test_mysql.password} --db-driver=mysql --mysql-host=${aws_db_instance.rds_test_mysql.address} --mysql-port=${aws_db_instance.rds_test_mysql.port} --debug prepare"
+  value = "sysbench --test=oltp --oltp-table-size=250 --mysql-user=${aws_db_instance.rds_test_mysql.username} --mysql-password=${aws_db_instance.rds_test_mysql.password} --db-driver=mysql --mysql-host=${aws_db_instance.rds_test_mysql.address} --mysql-port=${aws_db_instance.rds_test_mysql.port} prepare"
 }
 
 output "sysbench_cmd_3" {
-  value = "sysbench --db-driver=mysql --num-threads=4 --max-requests=10 --db-driver=mysql --test=oltp --mysql-table-engine=innodb --oltp-table-size=250 --max-time=300 --mysql-engine-trx=yes --mysql-user=${aws_db_instance.rds_test_mysql.username} --mysql-password=${aws_db_instance.rds_test_mysql.password} --mysql-host=${aws_db_instance.rds_test_mysql.address} --mysql-port=${aws_db_instance.rds_test_mysql.port} run"
+  value = "sysbench --db-driver=mysql --num-threads=4 --max-requests=10 --test=oltp --mysql-table-engine=innodb --oltp-table-size=250 --max-time=300 --mysql-engine-trx=yes --mysql-user=${aws_db_instance.rds_test_mysql.username} --mysql-password=${aws_db_instance.rds_test_mysql.password} --mysql-host=${aws_db_instance.rds_test_mysql.address} --mysql-port=${aws_db_instance.rds_test_mysql.port} run"
 }
