@@ -2,12 +2,12 @@ resource "aws_instance" "rds_test_sysbench" {
   ami           = "${data.aws_ami.rds_test_sysbench.id}"
   instance_type = "t2.micro"
   key_name = "${aws_key_pair.my-key.key_name}"
-  vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
+  vpc_security_group_ids = ["${aws_security_group.rds_test_sysbench.id}"]
   subnet_id = "${aws_subnet.rds_test_a.id}"
 }
 
-resource "aws_security_group" "allow_ssh" {
-  name = "allow_ssh"
+resource "aws_security_group" "rds_test_sysbench" {
+  name = "rds_test_sysbench"
   vpc_id = "${aws_vpc.rds_test.id}"
 }
 
@@ -18,7 +18,7 @@ resource "aws_security_group_rule" "mysql_out" {
   protocol        = "tcp"
   source_security_group_id = "${aws_security_group.rds_test_mysql.id}"
 
-  security_group_id = "${aws_security_group.allow_ssh.id}"
+  security_group_id = "${aws_security_group.rds_test_sysbench.id}"
 }
 
 resource "aws_security_group_rule" "sysbench_ssh_in" {
@@ -28,7 +28,7 @@ resource "aws_security_group_rule" "sysbench_ssh_in" {
   protocol        = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
-  security_group_id = "${aws_security_group.allow_ssh.id}"
+  security_group_id = "${aws_security_group.rds_test_sysbench.id}"
 }
 
 data "aws_ami" "rds_test_sysbench" {

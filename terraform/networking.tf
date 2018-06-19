@@ -35,7 +35,7 @@ resource "aws_security_group_rule" "mysql_in" {
   from_port       = 3306
   to_port         = 3306
   protocol        = "tcp"
-  source_security_group_id = "${aws_security_group.allow_ssh.id}"
+  source_security_group_id = "${aws_security_group.rds_test_sysbench.id}"
 
   security_group_id = "${aws_security_group.rds_test_mysql.id}"
 }
