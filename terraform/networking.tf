@@ -73,7 +73,7 @@ resource "aws_internet_gateway" "rds_test" {
 
 resource "aws_security_group" "rds_test_nat" {
   name = "rds_test_nat"
-  description = "Allow traffic to pass from the private subnet to the internet"
+  description = "Allow SSH"
 
   ingress {
     from_port = 22
