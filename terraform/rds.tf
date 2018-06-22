@@ -16,5 +16,5 @@ resource "aws_db_instance" "rds_test_mysql" {
   db_subnet_group_name = "${aws_db_subnet_group.rds_test.name}"
   vpc_security_group_ids = ["${aws_security_group.rds_test_mysql.id}"]
   apply_immediately = "${var.apply_immediately}"
-  final_snapshot_identifier = "rds-test-mysql-final"
+  skip_final_snapshot = true
 }
